@@ -38,7 +38,15 @@ class LocalStorageClinicAdapter implements ClinicStorageAdapter {
       const all = await this.getAll();
       const idx = all.findIndex((c) => c.normalizedClinicName === profile.normalizedClinicName);
       if (idx >= 0) {
-        all[idx] = { ...all[idx], ...profile, updatedAt: new Date().toISOString() };
+        const existing = all[idx];
+        // A campaign that didn't supply a client email (e.g. Stacie without one) should
+        // never erase a client email learned from a previous campaign for this clinic —
+        // only overwrite when the current campaign actually provided one.
+        const clientEmails =
+          profile.clientEmails && profile.clientEmails.length > 0
+            ? profile.clientEmails
+            : existing.clientEmails;
+        all[idx] = { ...existing, ...profile, clientEmails, updatedAt: new Date().toISOString() };
       } else {
         all.push(profile);
       }

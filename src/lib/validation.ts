@@ -61,14 +61,14 @@ export function validateCampaign(campaign: HearingAidCampaign): ValidationResult
 
   const sourceCfg = getSourceConfig(campaign.source);
   if (sourceCfg) {
-    if (sourceCfg.requiresClientEmail) {
-      if (campaign.stacieClientEmails.length === 0) {
-        fail("stacieClientEmails", "Client Email is required for Stacie campaigns.");
-      } else {
-        const badClientEmails = campaign.stacieClientEmails.filter((e) => !isValidEmail(e));
-        if (badClientEmails.length > 0) {
-          fail("stacieClientEmails", `Invalid client email(s): ${badClientEmails.join(", ")}`);
-        }
+    if (sourceCfg.requiresClientEmail && campaign.stacieClientEmails.length === 0) {
+      fail("stacieClientEmails", "Client Email is required for this source.");
+    }
+    // Format is validated whenever a client email is provided, whether or not it's required.
+    if (campaign.stacieClientEmails.length > 0) {
+      const badClientEmails = campaign.stacieClientEmails.filter((e) => !isValidEmail(e));
+      if (badClientEmails.length > 0) {
+        fail("stacieClientEmails", `Invalid client email(s): ${badClientEmails.join(", ")}`);
       }
     }
 

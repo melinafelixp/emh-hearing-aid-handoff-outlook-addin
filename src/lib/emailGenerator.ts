@@ -90,14 +90,16 @@ export function generateEmailHtml(campaign: HearingAidCampaign): string {
     ["Live Seed", multilineCell(seeds.liveSeeds)],
   ];
 
+  // No font-family is set anywhere below, by design: the generated email should
+  // inherit Outlook's normal compose typography rather than imposing EMH fonts.
   const tableRows = rows
     .map(
       ([label, value]) => `
         <tr>
-          <td style="border:1px solid #d9dcdb;padding:8px 12px;background-color:#f4f7f7;font-weight:bold;color:#21231f;font-family:Arial,Helvetica,sans-serif;font-size:14px;vertical-align:top;width:170px;">${escapeHtml(
+          <td style="border:1px solid #d9dcdb;padding:8px 12px;background-color:#f4f7f7;font-weight:bold;vertical-align:top;width:170px;">${escapeHtml(
             label
           )}</td>
-          <td style="border:1px solid #d9dcdb;padding:8px 12px;color:#21231f;font-family:Arial,Helvetica,sans-serif;font-size:14px;vertical-align:top;">${value}</td>
+          <td style="border:1px solid #d9dcdb;padding:8px 12px;vertical-align:top;">${value}</td>
         </tr>`
     )
     .join("");
@@ -105,16 +107,16 @@ export function generateEmailHtml(campaign: HearingAidCampaign): string {
   const stacieSection =
     campaign.source === "Stacie" && seeds.firstDeploymentOnlySeeds.length > 0
       ? `
-      <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#21231f;margin:20px 0 6px 0;">
+      <p style="margin:20px 0 6px 0;">
         Please send the first email deployment to these email addresses:
       </p>
-      <p style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#21231f;margin:0 0 16px 0;">
+      <p style="margin:0 0 16px 0;">
         ${multilineCell(seeds.firstDeploymentOnlySeeds)}
       </p>`
       : "";
 
   return `
-<div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#21231f;">
+<div>
   <p style="margin:0 0 12px 0;">Hi!</p>
   <p style="margin:0 0 16px 0;">Sending in details for a hearing aid campaign: ${escapeHtml(
     clinicName
@@ -122,8 +124,8 @@ export function generateEmailHtml(campaign: HearingAidCampaign): string {
   <table cellpadding="0" cellspacing="0" style="border-collapse:collapse;width:100%;max-width:640px;">
     <thead>
       <tr>
-        <td style="border:1px solid #d9dcdb;padding:8px 12px;background-color:#003c46;color:#ffffff;font-weight:bold;font-family:Arial,Helvetica,sans-serif;font-size:14px;">Detail</td>
-        <td style="border:1px solid #d9dcdb;padding:8px 12px;background-color:#003c46;color:#ffffff;font-weight:bold;font-family:Arial,Helvetica,sans-serif;font-size:14px;">Campaign Information</td>
+        <td style="border:1px solid #d9dcdb;padding:8px 12px;background-color:#00afaf;color:#ffffff;font-weight:bold;">Detail</td>
+        <td style="border:1px solid #d9dcdb;padding:8px 12px;background-color:#00afaf;color:#ffffff;font-weight:bold;">Campaign Information</td>
       </tr>
     </thead>
     <tbody>${tableRows}
@@ -132,7 +134,6 @@ export function generateEmailHtml(campaign: HearingAidCampaign): string {
   ${stacieSection}
   <p style="margin:20px 0 0 0;">Please let me know if you have any questions or need anything else!</p>
   <p style="margin:16px 0 0 0;">Thanks!</p>
-  <p style="margin:0;">Chloe</p>
 </div>`.trim();
 }
 

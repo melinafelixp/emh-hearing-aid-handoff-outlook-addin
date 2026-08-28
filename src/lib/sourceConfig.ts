@@ -26,10 +26,10 @@ export const sourceConfig: Record<JobSource, SourceConfigEntry> = {
     label: "Stacie",
     group: "stacie",
     requiresMarketingSpecialist: false,
-    requiresClientEmail: true,
+    requiresClientEmail: false,
     allowsOptionalClientLiveSeed: false,
     hasFirstDeploymentOnlySeeds: true,
-    helperText: "Stacie + client receive Deployment #1 only.",
+    helperText: "Stacie (+ client, if provided) receive Deployment #1 only.",
   },
   Phonak: {
     label: "Phonak",

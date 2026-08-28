@@ -39,9 +39,16 @@ function setSubjectAsync(subject: string): Promise<void> {
   });
 }
 
-function setBodyHtmlAsync(html: string): Promise<void> {
+/**
+ * Inserts the campaign HTML at the very top of the existing draft body — never
+ * replaces the body. This is deliberate: Office.js's body.setAsync() overwrites
+ * everything (including a signature Outlook already inserted), while
+ * body.prependAsync() leaves existing content — signature, images, custom HTML —
+ * completely untouched and just adds our content above it.
+ */
+function prependBodyHtmlAsync(html: string): Promise<void> {
   return new Promise((resolve, reject) => {
-    Office.context.mailbox.item?.body.setAsync(
+    Office.context.mailbox.item?.body.prependAsync(
       html,
       { coercionType: Office.CoercionType.Html },
       (result) => {
@@ -124,7 +131,7 @@ export async function populateOutlookEmail(input: PopulateEmailInput): Promise<v
   await setRecipientsAsync(item.to, OUTLOOK_RECIPIENTS.to);
   await setRecipientsAsync(item.cc, OUTLOOK_RECIPIENTS.cc);
   await setSubjectAsync(input.outlookSubject);
-  await setBodyHtmlAsync(input.bodyHtml);
+  await prependBodyHtmlAsync(input.bodyHtml);
   await attachIfMissing(input.htmlAttachment);
   if (input.countsAttachment) {
     await attachIfMissing(input.countsAttachment);

@@ -48,8 +48,9 @@ export function SourceSpecificSection({
 
       {source === "Stacie" && (
         <div className="emh-field">
-          <label className="emh-label emh-label-required">Client Email</label>
+          <label className="emh-label">Client Email (Optional)</label>
           <EmailListInput values={stacieClientEmails} onChange={onStacieClientEmailsChange} />
+          <div className="emh-helper">Add the client's email if they should receive the first deployment.</div>
           {stacieClientEmailsError && <div className="emh-field-error">{stacieClientEmailsError}</div>}
           <div className="emh-callout emh-callout-warning">
             <strong>First Deployment Only — Stacie + Client</strong>

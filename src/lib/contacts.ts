@@ -16,9 +16,11 @@
 // ─────────────────────────────────────────────────────────────────────────
 export const EVAN_EMAIL = ""; // TODO: confirm and fill in Evan's email address
 
+export const WORTH_EMAIL = "worth@worthadv.com";
+
 // Outlook "To" / "CC" recipients — populated on every campaign, every source.
 export const OUTLOOK_RECIPIENTS = {
-  to: ["worth@worthadv.com", "lauren@worthadv.com"],
+  to: [WORTH_EMAIL, "lauren@worthadv.com"],
   cc: ["brittany@elevatemediahouse.com"],
 };
 
@@ -63,6 +65,7 @@ export const BASE_TEST_SEEDS: string[] = [
   EMH_CONTACTS.brittany,
   ...(EVAN_EMAIL ? [EVAN_EMAIL] : []),
   SONAREV_CONTACTS.alex,
+  WORTH_EMAIL,
 ];
 
 export const BASE_LIVE_SEEDS: string[] = [
@@ -71,6 +74,7 @@ export const BASE_LIVE_SEEDS: string[] = [
   EMH_CONTACTS.jason,
   ...(EVAN_EMAIL ? [EVAN_EMAIL] : []),
   SONAREV_CONTACTS.alex,
+  WORTH_EMAIL,
 ];
 
 export const STACIE_FIRST_DEPLOYMENT_ONLY_BASE: string[] = [
