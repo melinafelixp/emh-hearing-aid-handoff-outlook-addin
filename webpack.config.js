@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const devCerts = require("office-addin-dev-certs");
 
 const urlDev = "https://localhost:3004/";
-const urlProd = "https://emh-hearing-aid-handoff.netlify.app/"; // update once deployed
+const urlProd = "https://REPLACE-WITH-YOUR-NETLIFY-SITE.netlify.app/"; // update once deployed
 
 module.exports = async (env, options) => {
   const dev = options.mode === "development";
