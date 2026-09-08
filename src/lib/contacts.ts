@@ -52,6 +52,12 @@ export const SONOVA_MARKETING_SPECIALISTS: Record<string, string> = {
   "Raymond Smith": "raymond.smith@sonova.com",
   "Kristin Sherman": "kristin.sherman@sonova.com",
   "Bradley Weil": "bradley.weil@sonova.com",
+  // Cassie is already one of the two fixed Sonova live seeds (see
+  // SONOVA_FIXED_CONTACTS.cassie below). Mapping her here to that same address
+  // means selecting her as Marketing Specialist adds nothing new — the
+  // case-insensitive dedupe in seedLogic.ts collapses the duplicate, so the
+  // live seeds stay exactly Cassie + Alicia with no special-case branching.
+  Cassie: SONOVA_FIXED_CONTACTS.cassie,
 };
 
 // ─────────────────────────────────────────────────────────────────────────

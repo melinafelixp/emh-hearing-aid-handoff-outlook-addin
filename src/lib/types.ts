@@ -5,12 +5,13 @@ export type JobSource = "SonaRev" | "Stacie" | "Phonak" | "Unitron";
 
 export const JOB_SOURCES: JobSource[] = ["SonaRev", "Stacie", "Phonak", "Unitron"];
 
-export type MarketingSpecialistName = "Raymond Smith" | "Kristin Sherman" | "Bradley Weil";
+export type MarketingSpecialistName = "Raymond Smith" | "Kristin Sherman" | "Bradley Weil" | "Cassie";
 
 export const MARKETING_SPECIALISTS: MarketingSpecialistName[] = [
   "Raymond Smith",
   "Kristin Sherman",
   "Bradley Weil",
+  "Cassie",
 ];
 
 export interface AttachmentInfo {
