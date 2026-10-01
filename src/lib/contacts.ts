@@ -21,13 +21,13 @@ export const WORTH_EMAIL = "worth@worthadv.com";
 // Outlook "To" / "CC" recipients — populated on every campaign, every source.
 export const OUTLOOK_RECIPIENTS = {
   to: [WORTH_EMAIL, "lauren@worthadv.com"],
-  cc: ["brittany@elevatemediahouse.com"],
+  cc: ["sheila@dealermediahouse.com"],
 };
 
 // EMH internal team
 export const EMH_CONTACTS = {
   chloe: "chloe@elevatemediahouse.com",
-  brittany: "brittany@elevatemediahouse.com",
+  brittany: "sheila@dealermediahouse.com",
   jason: "jason@elevatemediahouse.com",
 };
 
