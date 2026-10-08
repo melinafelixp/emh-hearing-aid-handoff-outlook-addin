@@ -27,7 +27,6 @@ export const OUTLOOK_RECIPIENTS = {
 // EMH internal team
 export const EMH_CONTACTS = {
   chloe: "chloe@elevatemediahouse.com",
-  sheila: "sheila@dealermediahouse.com",
   jason: "jason@elevatemediahouse.com",
 };
 
@@ -62,13 +61,12 @@ export const SONOVA_MARKETING_SPECIALISTS: Record<string, string> = {
 
 // ─────────────────────────────────────────────────────────────────────────
 // Base seed lists — built from the contacts above so there is exactly one
-// place that defines "who is Chloe / Sheila / Evan / Alex / Jason".
+// place that defines "who is Chloe / Evan / Alex / Jason".
 // Evan is included only when EVAN_EMAIL has been filled in (see warning
 // above); seedLogic.ts is responsible for the actual dedupe/normalize pass.
 // ─────────────────────────────────────────────────────────────────────────
 export const BASE_TEST_SEEDS: string[] = [
   EMH_CONTACTS.chloe,
-  EMH_CONTACTS.sheila,
   ...(EVAN_EMAIL ? [EVAN_EMAIL] : []),
   SONAREV_CONTACTS.alex,
   WORTH_EMAIL,
@@ -76,7 +74,6 @@ export const BASE_TEST_SEEDS: string[] = [
 
 export const BASE_LIVE_SEEDS: string[] = [
   EMH_CONTACTS.chloe,
-  EMH_CONTACTS.sheila,
   EMH_CONTACTS.jason,
   ...(EVAN_EMAIL ? [EVAN_EMAIL] : []),
   SONAREV_CONTACTS.alex,
